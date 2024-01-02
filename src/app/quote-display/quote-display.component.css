@@ -1,0 +1,11 @@
+.tag-pill {
+  display: inline-block;
+  background-color: #ee9999;
+  border-radius: 20px;
+  padding: 5px 10px;
+  margin: 5px;
+}
+
+.tag-display {
+  display: inline-block;
+}

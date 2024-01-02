@@ -1,7 +1,17 @@
 <button (click)="showQuoteAdder()">Add Quote</button>
-<app-quote-display 
-    *ngFor="let quote of quotes; index as i" 
-    [quote]="quote" 
-    [index]="i">
+<app-quote-display
+  *ngFor="let quote of quotes; index as i"
+  [quote]="quote"
+  [index]="i"
+  [tags]="tags"
+  (updateQuote)="updateQuote($event, i)"
+  (addTag)="addTag($event)"
+  (deleteQuote)="removeQuote(i)">
 </app-quote-display>
-<app-quote-adder *ngIf="quoteAdderVisible" (close)="hideQuoteAdder()" (add)="addQuote($event)"></app-quote-adder>
+<app-quote-adder
+  *ngIf="quoteAdderVisible"
+  (close)="hideQuoteAdder()"
+  (add)="addQuote($event)"
+  (addTag)="addTag($event)"
+  [tags]="tags">
+</app-quote-adder>

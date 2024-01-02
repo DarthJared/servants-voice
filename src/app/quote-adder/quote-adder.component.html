@@ -30,17 +30,28 @@
                     Session
                 </td>
                 <td>
-                    <select [(ngModel)]="session.month">
+                    <select [(ngModel)]="sessionMonth">
                         <option value="April">April</option>
                         <option value="October">October</option>
                     </select>
-                    <input type="number" min="1971" max="2099" step="1" [(ngModel)]="session.year" />
+                    <input type="number" min="1905" max="2099" step="1" [(ngModel)]="sessionYear" />
                 </td>
             </tr>
         </table>
         <div>
+          <button (click)="showTagAdder()">Add Tags</button>
+        </div>
+        <div>
             <button (click)="closeAdder()">Cancel</button>
-            <button (click)="addQuote()">Add</button>
+            <button *ngIf="removeQuoteVisible" (click)="sendRemoveQuote()">Delete Quote</button>
+            <button (click)="addQuote()">{{ addButtonText }}</button>
         </div>
     </div>
 </div>
+<app-tag-adder
+  *ngIf="tagAdderVisible"
+  [tags]="tags"
+  [activeTags]="activeTags"
+  (setTags)="setTags($event)"
+  (addTag)="addTags($event)">
+</app-tag-adder>

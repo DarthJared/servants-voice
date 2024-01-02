@@ -1,5 +1,35 @@
 <div>
-    {{index}} - "{{quote.quote}}"
+    "{{quote.quote}}"
     <br>
     ({{quote.talkTitle}} - {{quote.author}} - {{quote.session}})
+  <div class="tag-display">
+    <div *ngFor="let tag of quote.tags" class="tag-pill">{{getTagName(tag)}}</div>
+  </div>
+  <div>
+    <button (click)="showAddTags()">Add Tags</button>
+    <button (click)="showUpdateQuote()">Update Quote</button>
+  </div>
+  <app-tag-adder
+    *ngIf="addTagsVisible"
+    [tags]="tags"
+    [activeTags]="quote.tags ?? []"
+    (setTags)="setTags($event)"
+    (addTag)="addTags($event)">
+  </app-tag-adder>
+  <app-quote-adder
+    *ngIf="updateQuoteVisible"
+    (close)="hideUpdateQuote()"
+    (add)="updateQuoteData($event)"
+    (addTag)="addTags($event)"
+    [addButtonText]="'Update Quote'"
+    [tags]="tags"
+    [quote]="quote.quote"
+    [author]="quote.author"
+    [talkTitle]="quote.talkTitle"
+    [sessionMonth]="quoteMonth"
+    [sessionYear]="quoteYear"
+    [activeTags]="quote.tags"
+    [removeQuoteVisible]="true"
+    (removeQuote)="removeQuote()">
+  </app-quote-adder>
 </div>
