@@ -1,0 +1,19 @@
+<div class="tag-adder-wrapper" [ngClass]="{'darkened-back': darkenBack}">
+  <div class="tag-adder">
+    <ul class="tag-list">
+      <li *ngFor="let tag of tags">
+        <input type="checkbox" (change)="tagChecked($event, tag.id)" [checked]="isTagActive(tag.id)">
+        <span>{{tag.name}}</span>
+      </li>
+    </ul>
+    <div *ngIf="showNewTagInput">
+      <input type="text" [(ngModel)]="newTagName">
+    </div>
+    <div class="tag-adder-buttons">
+      <button class="tagAdderButton" *ngIf="!showNewTagInput" (click)="showNewTag()">New Tag</button>
+      <button class="tagAdderButton" *ngIf="!showNewTagInput" (click)="done()">Done</button>
+      <button class="tagAdderButton" *ngIf="showNewTagInput" (click)="hideNewTag()">Cancel</button>
+      <button class="tagAdderButton" *ngIf="showNewTagInput" (click)="addNewTag()">Add</button>
+    </div>
+  </div>
+</div>

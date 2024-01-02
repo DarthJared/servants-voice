@@ -1,20 +1,23 @@
 <div>
+  <div class="quote-wrapper">
     "{{quote.quote}}"
     <br>
     ({{quote.talkTitle}} - {{quote.author}} - {{quote.session}})
-  <div class="tag-display">
+    <div class="tag-display">
     <div *ngFor="let tag of quote.tags" class="tag-pill">{{getTagName(tag)}}</div>
   </div>
   <div>
     <button (click)="showAddTags()">Add Tags</button>
     <button (click)="showUpdateQuote()">Update Quote</button>
   </div>
+  </div>
   <app-tag-adder
     *ngIf="addTagsVisible"
     [tags]="tags"
     [activeTags]="quote.tags ?? []"
     (setTags)="setTags($event)"
-    (addTag)="addTags($event)">
+    (addTag)="addTags($event)"
+    [darkenBack]="true">
   </app-tag-adder>
   <app-quote-adder
     *ngIf="updateQuoteVisible"

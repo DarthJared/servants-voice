@@ -1,0 +1,28 @@
+.tag-adder-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.tag-adder {
+  position: absolute;
+  top: 40px;
+  width: 400px;
+  left: calc(50% - 210px);
+  background-color: #2C2F32;
+  border: solid 1px #aaaaaa;
+  border-radius: 20px;
+  padding: 20px;
+  z-index: 9999;
+}
+
+.darkened-back {
+  background-color: #00000099;
+  z-index: 9999;
+}
+
+.tag-list {
+  list-style-type: none;
+}
