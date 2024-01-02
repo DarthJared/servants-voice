@@ -1,0 +1,46 @@
+<div class="adder-modal-wrapper" (click)="doNothing($event)">
+    <div class="adder-modal">
+        <table>
+            <tr>
+                <td>
+                    Quote
+                </td>
+                <td>
+                    <input type="text" [(ngModel)]="quote">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Author
+                </td>
+                <td>
+                    <input type="text" [(ngModel)]="author">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Title
+                </td>
+                <td>
+                    <input type="text" [(ngModel)]="talkTitle">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Session
+                </td>
+                <td>
+                    <select [(ngModel)]="session.month">
+                        <option value="April">April</option>
+                        <option value="October">October</option>
+                    </select>
+                    <input type="number" min="1971" max="2099" step="1" [(ngModel)]="session.year" />
+                </td>
+            </tr>
+        </table>
+        <div>
+            <button (click)="closeAdder()">Cancel</button>
+            <button (click)="addQuote()">Add</button>
+        </div>
+    </div>
+</div>
