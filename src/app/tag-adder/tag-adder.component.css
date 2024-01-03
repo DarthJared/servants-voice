@@ -27,6 +27,8 @@
   list-style-type: none;
   padding: 0;
   margin: 0;
+  max-height: 60vh;
+  overflow: auto;
 }
 
 .tag-adder-buttons {
@@ -40,10 +42,37 @@
   cursor: pointer;
 }
 
-.button-icon:hover {
+.small-button-icon {
+  font-size: 20px;
+  margin-left: 20px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.button-icon:hover, .small-button-icon:hover {
   color: #777777;
 }
 
 .tag-name-wrapper {
   margin-top: 20px;
+}
+
+.tag-adder-header {
+  text-align: center;
+}
+
+.header-text {
+  margin-top: 0;
+}
+
+.list-item-table {
+  width: 100%;
+}
+
+.trash-cell {
+  text-align: right;
+}
+
+.check-box-cell {
+  width: 20px;
 }

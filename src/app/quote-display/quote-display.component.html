@@ -19,7 +19,8 @@
     [activeTags]="quote.tags ?? []"
     (setTags)="setTags($event)"
     (addTag)="addTags($event)"
-    [darkenBack]="true">
+    [darkenBack]="true"
+    (removeTag)="deleteTag($event)">
   </app-tag-adder>
   <app-quote-adder
     *ngIf="updateQuoteVisible"
@@ -35,6 +36,8 @@
     [sessionYear]="quoteYear"
     [activeTags]="quote.tags"
     [removeQuoteVisible]="true"
-    (removeQuote)="removeQuote()">
+    (removeQuote)="removeQuote()"
+    (removeTag)="deleteTag($event)"
+    [title]="'UPDATEquote'">
   </app-quote-adder>
 </div>

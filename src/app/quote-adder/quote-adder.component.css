@@ -38,3 +38,20 @@
 .padded-top {
   margin-top: 10px;
 }
+
+.quote-text {
+  width: 210px;
+  height: 110px;
+}
+
+.quote-label-cell {
+  vertical-align: top;
+}
+
+.tag-adder-header {
+  text-align: center;
+}
+
+.header-text {
+  margin-top: 0;
+}

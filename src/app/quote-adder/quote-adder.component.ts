@@ -17,6 +17,7 @@ export class QuoteAdderComponent {
   @Output() add = new EventEmitter<any>();
   @Output() addTag = new EventEmitter<any>();
   @Output() removeQuote = new EventEmitter<string>();
+  @Output() removeTag = new EventEmitter<number>();
   @Input() tags: any[] = [];
   @Input() addButtonText: string = 'Add Quote';
   @Input() activeTags: number[] = [];
@@ -27,6 +28,7 @@ export class QuoteAdderComponent {
   @Input() sessionMonth: string = 'April';
   @Input() sessionYear: number = 1971;
   @Input() removeQuoteVisible: boolean = false;
+  @Input() title = 'ADDquote';
 
   tagAdderVisible = false;
 
@@ -72,5 +74,11 @@ export class QuoteAdderComponent {
 
   sendRemoveQuote() {
     this.removeQuote.emit('remove');
+  }
+
+  deleteTag(tag: number) {
+
+    console.log('Remove it')
+    this.removeTag.emit(tag);
   }
 }

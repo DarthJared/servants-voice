@@ -9,15 +9,22 @@
       [tags]="tags"
       (updateQuote)="updateQuote($event, i)"
       (addTag)="addTag($event)"
-      (deleteQuote)="removeQuote(i)">
+      (deleteQuote)="removeQuote(i)"
+      (removeTag)="deleteTag($event)">
     </app-quote-display>
   </div>
+  <app-side-panel
+    *ngIf="sidePanelVisible"
+    (hideSidePanel)="hideSidePanel()"
+    (search)="applySearch($event)">
+  </app-side-panel>
   <app-quote-adder
     *ngIf="quoteAdderVisible"
     (close)="hideQuoteAdder()"
     (add)="addQuote($event)"
     (addTag)="addTag($event)"
-    [tags]="tags">
+    [tags]="tags"
+    (removeTag)="deleteTag($event)">
   </app-quote-adder>
   <div class="quote-add-button">
     <fa-icon [icon]="faComment" class="button-icon" (click)="showQuoteAdder()"></fa-icon>

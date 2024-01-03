@@ -1,9 +1,23 @@
 <div class="tag-adder-wrapper" [ngClass]="{'darkened-back': darkenBack}">
   <div class="tag-adder">
+    <div class="tag-adder-header">
+      <h3 class="header-text">TAGS</h3>
+    </div>
     <ul class="tag-list">
       <li *ngFor="let tag of tags">
-        <input type="checkbox" (change)="tagChecked($event, tag.id)" [checked]="isTagActive(tag.id)">
-        <span>{{tag.name}}</span>
+        <table class="list-item-table">
+          <tr>
+            <td class="check-box-cell">
+              <input type="checkbox" (change)="tagChecked($event, tag.id)" [checked]="isTagActive(tag.id)">
+            </td>
+            <td>
+              <span>{{tag.name}}</span>
+            </td>
+            <td class="trash-cell">
+              <fa-icon [icon]="faTrash" class="small-button-icon" (click)="deleteTag(tag.id)"></fa-icon>
+            </td>
+          </tr>
+        </table>
       </li>
     </ul>
     <div *ngIf="showNewTagInput" class="tag-name-wrapper">

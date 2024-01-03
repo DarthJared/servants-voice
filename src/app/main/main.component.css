@@ -52,8 +52,8 @@
 
 .page-contents {
   margin-top: 40px;
-  height: calc(100% - 60px);
+  height: calc(100% - 120px);
   width: 100%;
   overflow: auto;
-  padding-bottom: 20px;
+  padding-bottom: 80px;
 }

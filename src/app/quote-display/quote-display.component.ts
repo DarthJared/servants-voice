@@ -29,6 +29,7 @@ export class QuoteDisplayComponent {
   @Output() updateQuote = new EventEmitter<any>();
   @Output() addTag = new EventEmitter<any>();
   @Output() deleteQuote = new EventEmitter<string>();
+  @Output() removeTag = new EventEmitter<number>();
 
   quoteMonth: string = 'April';
   quoteYear: number = 1971;
@@ -81,5 +82,9 @@ export class QuoteDisplayComponent {
 
   removeQuote() {
     this.deleteQuote.emit('remove');
+  }
+
+  deleteTag(tag: number) {
+    this.removeTag.emit(tag);
   }
 }

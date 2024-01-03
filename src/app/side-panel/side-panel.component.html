@@ -1,0 +1,12 @@
+<div class="darkened-back" (click)="hidePanel()">
+  <div class="panel-contents">
+    <div class="exit-icon" (click)="hidePanel()">
+      <fa-icon [icon]="faXmark" class="button-icon"></fa-icon>
+    </div>
+    <div class="search-wrapper">
+      <input type="text" class="search-input" placeholder="Search..." [(ngModel)]="searchText">
+      <fa-icon [icon]="faMagnifyingGlass" class="small-button-icon"></fa-icon>
+    </div>
+    list of tags to filter by and clear filters
+  </div>
+</div>

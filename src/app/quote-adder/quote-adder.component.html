@@ -1,12 +1,15 @@
 <div class="adder-modal-wrapper" (click)="doNothing($event)">
     <div class="adder-modal">
+      <div class="tag-adder-header">
+        <h3 class="header-text">{{ title }}</h3>
+      </div>
         <table>
             <tr>
-                <td>
+                <td class="quote-label-cell">
                     Quote
                 </td>
                 <td>
-                    <input type="text" [(ngModel)]="quote">
+                  <textarea class="quote-text" [(ngModel)]="quote" placeholder="Quote text here..."></textarea>
                 </td>
             </tr>
             <tr>
@@ -14,7 +17,7 @@
                     Author
                 </td>
                 <td>
-                    <input type="text" [(ngModel)]="author">
+                    <input type="text" [(ngModel)]="author" placeholder="Author here...">
                 </td>
             </tr>
             <tr>
@@ -22,7 +25,7 @@
                     Title
                 </td>
                 <td>
-                    <input type="text" [(ngModel)]="talkTitle">
+                    <input type="text" [(ngModel)]="talkTitle" placeholder="Title here...">
                 </td>
             </tr>
             <tr>
@@ -57,5 +60,6 @@
   [tags]="tags"
   [activeTags]="activeTags"
   (setTags)="setTags($event)"
-  (addTag)="addTags($event)">
+  (addTag)="addTags($event)"
+  (removeTag)="deleteTag($event)">
 </app-tag-adder>

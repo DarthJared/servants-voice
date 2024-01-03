@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {CommonModule, NgForOf} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
-import {faPlus, faCheck, faXmark} from "@fortawesome/free-solid-svg-icons";
+import {faPlus, faCheck, faXmark, faTrash} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-tag-adder',
@@ -17,12 +17,14 @@ export class TagAdderComponent {
   @Input() darkenBack = false;
   @Output() setTags = new EventEmitter<number[]>();
   @Output() addTag = new EventEmitter<any>();
+  @Output() removeTag = new EventEmitter<number>();
 
   newTagName: string = '';
   showNewTagInput = false;
   faPlus = faPlus;
   faCheck = faCheck;
   faXmark = faXmark;
+  faTrash = faTrash;
 
   tagChecked(event: any, tag: any) {
     if (event.target.checked) {
@@ -61,5 +63,10 @@ export class TagAdderComponent {
 
   isTagActive(tagId: number) {
     return this.activeTags.includes(tagId);
+  }
+
+  deleteTag(tagId: number) {
+    console.log('tagId', tagId);
+    this.removeTag.emit(tagId);
   }
 }
