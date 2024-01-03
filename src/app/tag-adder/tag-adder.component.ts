@@ -12,12 +12,20 @@ import {faPlus, faCheck, faXmark, faTrash} from "@fortawesome/free-solid-svg-ico
   styleUrl: './tag-adder.component.css'
 })
 export class TagAdderComponent {
-  @Input() tags: any[] = [];
+  @Input()
+  get tags() {
+    return this._tags.sort((a, b) => a.name.localeCompare(b.name));
+  };
+  set tags(tags: any[]) {
+    this._tags = tags;
+  }
   @Input() activeTags: number[] = [];
   @Input() darkenBack = false;
   @Output() setTags = new EventEmitter<number[]>();
   @Output() addTag = new EventEmitter<any>();
   @Output() removeTag = new EventEmitter<number>();
+
+  private _tags: any[] = [];
 
   newTagName: string = '';
   showNewTagInput = false;
@@ -26,11 +34,11 @@ export class TagAdderComponent {
   faXmark = faXmark;
   faTrash = faTrash;
 
-  tagChecked(event: any, tag: any) {
-    if (event.target.checked) {
-      this.activeTags.push(tag);
+  addRemoveTagFromList(tagId: number) {
+    if (this.activeTags.includes(tagId)) {
+      this.activeTags = this.activeTags.filter(t => t !== tagId);
     } else {
-      this.activeTags = this.activeTags.filter(t => t !== tag);
+      this.activeTags.push(tagId);
     }
   }
 
@@ -46,10 +54,6 @@ export class TagAdderComponent {
     });
     this.activeTags.push(highestId + 1);
     this.hideNewTag();
-  }
-
-  doNothing(event: any) {
-    event.stopPropagation();
   }
 
   showNewTag() {

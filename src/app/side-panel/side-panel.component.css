@@ -44,9 +44,31 @@
 
 .search-wrapper {
   margin-left: 20px;
-  margin-top: 60px;
+  margin-top: 15px;
 }
 
 .search-input {
   width: 75%;
+}
+
+.tag-pill {
+  width: fit-content;
+  border-radius: 20px;
+  padding: 5px 10px;
+  margin: 20px;
+  cursor: pointer;
+}
+
+.unselected {
+  opacity: 30%;
+}
+
+.search-clearer {
+  margin-left: 25px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.hidden {
+  opacity: 0;
 }

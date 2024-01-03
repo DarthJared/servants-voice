@@ -1,22 +1,27 @@
 <div class="page-background">
-<!--    <button (click)="showQuoteAdder()">Add Quote</button>-->
   <app-header class="header" (displaySidePanel)="displaySidePanel()"></app-header>
   <div class="page-contents">
     <app-quote-display
-      *ngFor="let quote of quotes; index as i"
+      *ngFor="let quote of filteredQuotes; index as i"
       [quote]="quote"
       [index]="i"
       [tags]="tags"
       (updateQuote)="updateQuote($event, i)"
       (addTag)="addTag($event)"
       (deleteQuote)="removeQuote(i)"
-      (removeTag)="deleteTag($event)">
+      (removeTag)="deleteTag($event)"
+      (addTagFilter)="addTagFilter($event)"
+      [selectedTags]="selectedTags">
     </app-quote-display>
   </div>
   <app-side-panel
     *ngIf="sidePanelVisible"
     (hideSidePanel)="hideSidePanel()"
-    (search)="applySearch($event)">
+    (search)="applySearch($event)"
+    (selectTags)="setSelectedTags($event)"
+    [searchText]="searchText"
+    [tags]="tags"
+    [selectedTags]="selectedTags">
   </app-side-panel>
   <app-quote-adder
     *ngIf="quoteAdderVisible"
@@ -26,7 +31,8 @@
     [tags]="tags"
     (removeTag)="deleteTag($event)">
   </app-quote-adder>
-  <div class="quote-add-button">
-    <fa-icon [icon]="faComment" class="button-icon" (click)="showQuoteAdder()"></fa-icon>
+  <div class="quote-add-button" (click)="showQuoteAdder()">
+    <fa-icon [icon]="faQuoteLeft" class="button-icon bump-right"></fa-icon>
+    <fa-icon [icon]="faQuoteRight" class="button-icon"></fa-icon>
   </div>
 </div>

@@ -1,5 +1,5 @@
 <div class="adder-modal-wrapper" (click)="doNothing($event)">
-    <div class="adder-modal">
+    <div class="adder-modal" *ngIf="!tagAdderVisible">
       <div class="tag-adder-header">
         <h3 class="header-text">{{ title }}</h3>
       </div>
@@ -42,13 +42,9 @@
             </tr>
         </table>
         <div class="padded-top">
-<!--          <button (click)="showTagAdder()">Add Tags</button>-->
           <fa-icon [icon]="faTag" class="button-icon" (click)="showTagAdder()"></fa-icon>
         </div>
         <div class="buttons-wrapper">
-<!--            <button (click)="closeAdder()">Cancel</button>-->
-<!--            <button *ngIf="removeQuoteVisible" (click)="sendRemoveQuote()">Delete Quote</button>-->
-<!--            <button (click)="addQuote()">{{ addButtonText }}</button>-->
           <fa-icon [icon]="faXmark" class="button-icon padded-left" (click)="closeAdder()"></fa-icon>
           <fa-icon [icon]="faTrash" class="button-icon padded-left" *ngIf="removeQuoteVisible" (click)="sendRemoveQuote()"></fa-icon>
           <fa-icon [icon]="faCheck" class="button-icon padded-left" (click)="addQuote()"></fa-icon>

@@ -1,12 +1,26 @@
 <div class="darkened-back" (click)="hidePanel()">
-  <div class="panel-contents">
+  <div class="panel-contents" (click)="doNothing($event)">
+    <div
+      (click)="clearFilters()" class="search-clearer"
+      [ngClass]="{'hidden': searchText === '' && selectedTags.length === 0}">
+      Clear Filters
+    </div>
     <div class="exit-icon" (click)="hidePanel()">
       <fa-icon [icon]="faXmark" class="button-icon"></fa-icon>
     </div>
     <div class="search-wrapper">
-      <input type="text" class="search-input" placeholder="Search..." [(ngModel)]="searchText">
-      <fa-icon [icon]="faMagnifyingGlass" class="small-button-icon"></fa-icon>
+      <input type="text" class="search-input" placeholder="Search quotes..." [(ngModel)]="searchText">
+      <fa-icon [icon]="faMagnifyingGlass" class="small-button-icon" (click)="searchQuotes()"></fa-icon>
     </div>
-    list of tags to filter by and clear filters
+    <div class="tag-display">
+      <div
+        *ngFor="let tag of tags"
+        class="tag-pill"
+        (click)="addRemoveTagFromList(tag.id)"
+        [ngStyle]="{'background-color': tag.color}"
+        [ngClass]="{'unselected': selectedTags.length > 0 && !selectedTags.includes(tag.id)}">
+        {{tag.name}}
+      </div>
+    </div>
   </div>
 </div>

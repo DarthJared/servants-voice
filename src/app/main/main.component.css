@@ -4,12 +4,12 @@
   right: 25px;
   z-index: 100;
   width: 80px;
-  height: 63px;
+  height: 60px;
   border-radius: 50%;
   cursor: pointer;
   background-color: #555555;
   text-align: center;
-  padding-top: 16px;
+  padding-top: 22px;
 }
 
 .quote-add-button:hover {
@@ -35,10 +35,10 @@
 }
 
 .button-icon {
-  font-size: 40px;
+  font-size: 30px;
 }
 
-.button-icon:hover {
+.quote-add-button:hover > .button-icon {
   color: #777777;
 }
 
@@ -56,4 +56,8 @@
   width: 100%;
   overflow: auto;
   padding-bottom: 80px;
+}
+
+.bump-right {
+  margin-right: 8px;
 }

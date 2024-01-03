@@ -5,11 +5,12 @@ import {TagAdderComponent} from "../tag-adder/tag-adder.component";
 import {QuoteAdderComponent} from "../quote-adder/quote-adder.component";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {faPenToSquare, faTag} from "@fortawesome/free-solid-svg-icons";
+import {SortTagPipe} from "../sort-tag.pipe";
 
 @Component({
   selector: 'app-quote-display',
   standalone: true,
-  imports: [NgForOf, CommonModule, FormsModule, TagAdderComponent, QuoteAdderComponent, FontAwesomeModule],
+  imports: [NgForOf, CommonModule, FormsModule, TagAdderComponent, QuoteAdderComponent, FontAwesomeModule, SortTagPipe],
   templateUrl: './quote-display.component.html',
   styleUrl: './quote-display.component.css'
 })
@@ -26,10 +27,13 @@ export class QuoteDisplayComponent {
   }
   @Input() index: number = 0;
   @Input() tags: any[] = [];
+  @Input() selectedTags: number[] = [];
   @Output() updateQuote = new EventEmitter<any>();
   @Output() addTag = new EventEmitter<any>();
   @Output() deleteQuote = new EventEmitter<string>();
   @Output() removeTag = new EventEmitter<number>();
+  @Output() addTagFilter = new EventEmitter<number>();
+  @Output() removeTagFilter = new EventEmitter<number>();
 
   quoteMonth: string = 'April';
   quoteYear: number = 1971;
@@ -72,19 +76,15 @@ export class QuoteDisplayComponent {
     this.updateQuote.emit(this.quote);
   }
 
-  getTagName(tag: number) {
-    const matchingTag = this.tags.find(t => t.id === tag);
-    if (!matchingTag) {
-      return '';
-    }
-    return matchingTag.name;
-  }
-
   removeQuote() {
     this.deleteQuote.emit('remove');
   }
 
   deleteTag(tag: number) {
     this.removeTag.emit(tag);
+  }
+
+  filterByTag(tag: number) {
+    this.addTagFilter.emit(tag);
   }
 }

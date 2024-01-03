@@ -4,14 +4,19 @@
     <br>
     ({{quote.talkTitle}} - {{quote.author}} - {{quote.session}})
     <div class="tag-display">
-    <div *ngFor="let tag of quote.tags" class="tag-pill">{{getTagName(tag)}}</div>
-  </div>
-  <div class="quote-buttons-wrapper">
-<!--    <button (click)="showAddTags()">Add Tags</button>-->
-<!--    <button (click)="showUpdateQuote()">Update Quote</button>-->
-    <fa-icon [icon]="faTag" class="button-icon" (click)="showAddTags()"></fa-icon>
-    <fa-icon [icon]="faPenToSquare" class="button-icon" (click)="showUpdateQuote()"></fa-icon>
-  </div>
+      <div
+        *ngFor="let tag of quote.tags | sortTag : tags"
+        class="tag-pill"
+        [ngStyle]="{'background-color': tag.color}"
+        (click)="filterByTag(tag.id)"
+        [ngClass]="{'unselected': selectedTags.length > 0 && !selectedTags.includes(tag.id)}">
+        {{tag.name}}
+      </div>
+    </div>
+    <div class="quote-buttons-wrapper">
+      <fa-icon [icon]="faTag" class="button-icon" (click)="showAddTags()"></fa-icon>
+      <fa-icon [icon]="faPenToSquare" class="button-icon" (click)="showUpdateQuote()"></fa-icon>
+    </div>
   </div>
   <app-tag-adder
     *ngIf="addTagsVisible"

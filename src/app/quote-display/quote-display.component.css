@@ -1,9 +1,9 @@
 .tag-pill {
   display: inline-block;
-  background-color: #ee9999;
   border-radius: 20px;
   padding: 5px 10px;
   margin: 5px;
+  cursor: pointer;
 }
 
 .quote-wrapper {
@@ -26,4 +26,8 @@
 
 .quote-buttons-wrapper {
   text-align: right;
+}
+
+.unselected {
+  opacity: 30%;
 }

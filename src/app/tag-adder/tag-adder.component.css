@@ -76,3 +76,15 @@
 .check-box-cell {
   width: 20px;
 }
+
+.tag-pill {
+  width: fit-content;
+  border-radius: 20px;
+  padding: 5px 10px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.unselected {
+  opacity: 30%;
+}
