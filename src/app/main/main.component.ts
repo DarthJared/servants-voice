@@ -3,19 +3,25 @@ import { QuotesService } from '../quotes.service';
 import { CommonModule, NgForOf } from '@angular/common';
 import { QuoteDisplayComponent } from '../quote-display/quote-display.component';
 import { QuoteAdderComponent } from '../quote-adder/quote-adder.component';
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import {faComment} from "@fortawesome/free-solid-svg-icons";
+import {HeaderComponent} from "../header/header.component";
 
 @Component({
   selector: 'app-main',
   standalone: true,
-  imports: [NgForOf, CommonModule, QuoteDisplayComponent, QuoteAdderComponent],
+  imports: [NgForOf, CommonModule, QuoteDisplayComponent, QuoteAdderComponent, FontAwesomeModule, HeaderComponent],
   templateUrl: './main.component.html',
   styleUrl: './main.component.css'
 })
 export class MainComponent {
   quotes: any[] = [];
   quoteAdderVisible = false;
+  sidePanelVisible = false;
 
   tags: any[] = [];
+
+  faComment = faComment;
 
   constructor(private quotesService: QuotesService) {
     quotesService.getQuotes().subscribe((res: any) => {
@@ -63,5 +69,9 @@ export class MainComponent {
     this.quotesService.updateQuotes(this.quotes).subscribe((res: any) => {
       this.quotes = res.items[0].quotes;
     });
+  }
+
+  displaySidePanel() {
+    this.sidePanelVisible = true;
   }
 }

@@ -1,0 +1,23 @@
+.header-table {
+  width: 100%;
+}
+
+.header-cell {
+  width: 33%;
+}
+
+.app-title  {
+  font-size: 35px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.button-icon {
+  font-size: 30px;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+.button-icon:hover {
+  color: #777777;
+}

@@ -11,9 +11,30 @@
 .adder-modal {
     position: absolute;
     top: 40px;
-    width: 400px;
-    left: calc(50% - 210px);
+    width: 300px;
+    left: calc(50% - 170px);
     background-color: #2C2F32;
     border-radius: 20px;
     padding: 20px;
+}
+
+.buttons-wrapper {
+  text-align: right;
+}
+
+.button-icon {
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.button-icon:hover {
+  color: #777777;
+}
+
+.padded-left {
+  margin-left: 20px;
+}
+
+.padded-top {
+  margin-top: 10px;
 }

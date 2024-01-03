@@ -38,13 +38,17 @@
                 </td>
             </tr>
         </table>
-        <div>
-          <button (click)="showTagAdder()">Add Tags</button>
+        <div class="padded-top">
+<!--          <button (click)="showTagAdder()">Add Tags</button>-->
+          <fa-icon [icon]="faTag" class="button-icon" (click)="showTagAdder()"></fa-icon>
         </div>
-        <div>
-            <button (click)="closeAdder()">Cancel</button>
-            <button *ngIf="removeQuoteVisible" (click)="sendRemoveQuote()">Delete Quote</button>
-            <button (click)="addQuote()">{{ addButtonText }}</button>
+        <div class="buttons-wrapper">
+<!--            <button (click)="closeAdder()">Cancel</button>-->
+<!--            <button *ngIf="removeQuoteVisible" (click)="sendRemoveQuote()">Delete Quote</button>-->
+<!--            <button (click)="addQuote()">{{ addButtonText }}</button>-->
+          <fa-icon [icon]="faXmark" class="button-icon padded-left" (click)="closeAdder()"></fa-icon>
+          <fa-icon [icon]="faTrash" class="button-icon padded-left" *ngIf="removeQuoteVisible" (click)="sendRemoveQuote()"></fa-icon>
+          <fa-icon [icon]="faCheck" class="button-icon padded-left" (click)="addQuote()"></fa-icon>
         </div>
     </div>
 </div>

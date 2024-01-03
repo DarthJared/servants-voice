@@ -1,11 +1,13 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {CommonModule, NgForOf} from "@angular/common";
 import {FormsModule} from "@angular/forms";
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import {faPlus, faCheck, faXmark} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-tag-adder',
   standalone: true,
-  imports: [NgForOf, CommonModule, FormsModule],
+  imports: [NgForOf, CommonModule, FormsModule, FontAwesomeModule],
   templateUrl: './tag-adder.component.html',
   styleUrl: './tag-adder.component.css'
 })
@@ -18,6 +20,9 @@ export class TagAdderComponent {
 
   newTagName: string = '';
   showNewTagInput = false;
+  faPlus = faPlus;
+  faCheck = faCheck;
+  faXmark = faXmark;
 
   tagChecked(event: any, tag: any) {
     if (event.target.checked) {

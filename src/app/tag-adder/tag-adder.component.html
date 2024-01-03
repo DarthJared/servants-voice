@@ -6,14 +6,19 @@
         <span>{{tag.name}}</span>
       </li>
     </ul>
-    <div *ngIf="showNewTagInput">
-      <input type="text" [(ngModel)]="newTagName">
+    <div *ngIf="showNewTagInput" class="tag-name-wrapper">
+      <input type="text" [(ngModel)]="newTagName" placeholder="Tag name here...">
     </div>
     <div class="tag-adder-buttons">
-      <button class="tagAdderButton" *ngIf="!showNewTagInput" (click)="showNewTag()">New Tag</button>
-      <button class="tagAdderButton" *ngIf="!showNewTagInput" (click)="done()">Done</button>
-      <button class="tagAdderButton" *ngIf="showNewTagInput" (click)="hideNewTag()">Cancel</button>
-      <button class="tagAdderButton" *ngIf="showNewTagInput" (click)="addNewTag()">Add</button>
+<!--      <button class="tagAdderButton" *ngIf="!showNewTagInput" (click)="showNewTag()">New Tag</button>-->
+<!--      <button class="tagAdderButton" *ngIf="!showNewTagInput" (click)="done()">Done</button>-->
+<!--      <button class="tagAdderButton" *ngIf="showNewTagInput" (click)="hideNewTag()">Cancel</button>-->
+<!--      <button class="tagAdderButton" *ngIf="showNewTagInput" (click)="addNewTag()">Add</button>-->
+
+      <fa-icon [icon]="faPlus" *ngIf="!showNewTagInput" class="button-icon" (click)="showNewTag()"></fa-icon>
+      <fa-icon [icon]="faCheck" *ngIf="!showNewTagInput" class="button-icon" (click)="done()"></fa-icon>
+      <fa-icon [icon]="faXmark" *ngIf="showNewTagInput" class="button-icon" (click)="hideNewTag()"></fa-icon>
+      <fa-icon [icon]="faCheck" *ngIf="showNewTagInput" class="button-icon" (click)="addNewTag()"></fa-icon>
     </div>
   </div>
 </div>

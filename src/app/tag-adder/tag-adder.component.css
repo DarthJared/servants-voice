@@ -4,25 +4,46 @@
   left: 0;
   right: 0;
   bottom: 0;
+  z-index: 99999;
 }
 
 .tag-adder {
   position: absolute;
   top: 40px;
-  width: 400px;
-  left: calc(50% - 210px);
+  width: 300px;
+  left: calc(50% - 170px);
   background-color: #2C2F32;
-  border: solid 1px #aaaaaa;
   border-radius: 20px;
   padding: 20px;
-  z-index: 9999;
+  z-index: 99999;
 }
 
 .darkened-back {
   background-color: #00000099;
-  z-index: 9999;
+  z-index: 99999;
 }
 
 .tag-list {
   list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tag-adder-buttons {
+  text-align: right;
+}
+
+.button-icon {
+  font-size: 30px;
+  margin-left: 20px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.button-icon:hover {
+  color: #777777;
+}
+
+.tag-name-wrapper {
+  margin-top: 20px;
 }

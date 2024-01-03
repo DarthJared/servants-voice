@@ -2,11 +2,13 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {TagAdderComponent} from "../tag-adder/tag-adder.component";
 import {CommonModule} from "@angular/common";
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import {faTag, faCheck, faXmark, faTrash} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-quote-adder',
   standalone: true,
-  imports: [CommonModule, FormsModule, TagAdderComponent],
+  imports: [CommonModule, FormsModule, TagAdderComponent, FontAwesomeModule],
   templateUrl: './quote-adder.component.html',
   styleUrl: './quote-adder.component.css'
 })
@@ -27,6 +29,11 @@ export class QuoteAdderComponent {
   @Input() removeQuoteVisible: boolean = false;
 
   tagAdderVisible = false;
+
+  faCheck = faCheck;
+  faXmark = faXmark;
+  faTrash = faTrash;
+  faTag = faTag;
 
   closeAdder() {
     this.close.emit('close');
