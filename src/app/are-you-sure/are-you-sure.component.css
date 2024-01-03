@@ -1,0 +1,41 @@
+.modal-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999999;
+}
+
+.modal-content {
+  position: absolute;
+  top: 40px;
+  width: 300px;
+  left: calc(50% - 170px);
+  background-color: #2C2F32;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.button-icon {
+  font-size: 30px;
+  margin-left: 20px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.button-icon:hover {
+  color: #777777;
+}
+
+.header-text {
+  margin-top: 0;
+}
+
+.modal-header {
+  text-align: center;
+}
+
+.option-buttons {
+  text-align: right;
+}

@@ -1,5 +1,5 @@
 <div class="tag-adder-wrapper" [ngClass]="{'darkened-back': darkenBack}">
-  <div class="tag-adder">
+  <div class="tag-adder" *ngIf="!displayConfirm">
     <div class="tag-adder-header">
       <h3 class="header-text">TAGquote</h3>
     </div>
@@ -17,7 +17,7 @@
               </div>
             </td>
             <td class="trash-cell">
-              <fa-icon [icon]="faTrash" class="small-button-icon" (click)="deleteTag(tag.id)"></fa-icon>
+              <fa-icon [icon]="faTrash" class="small-button-icon" (click)="showConfirm(tag.id)"></fa-icon>
             </td>
           </tr>
         </table>
@@ -34,3 +34,8 @@
     </div>
   </div>
 </div>
+<app-are-you-sure
+  *ngIf="displayConfirm"
+  (confirm)="confirmSelected()"
+  (cancel)="cancelSelected()">
+</app-are-you-sure>

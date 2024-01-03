@@ -3,11 +3,12 @@ import {CommonModule, NgForOf} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {faPlus, faCheck, faXmark, faTrash} from "@fortawesome/free-solid-svg-icons";
+import {AreYouSureComponent} from "../are-you-sure/are-you-sure.component";
 
 @Component({
   selector: 'app-tag-adder',
   standalone: true,
-  imports: [NgForOf, CommonModule, FormsModule, FontAwesomeModule],
+  imports: [NgForOf, CommonModule, FormsModule, FontAwesomeModule, AreYouSureComponent],
   templateUrl: './tag-adder.component.html',
   styleUrl: './tag-adder.component.css'
 })
@@ -24,6 +25,9 @@ export class TagAdderComponent {
   @Output() setTags = new EventEmitter<number[]>();
   @Output() addTag = new EventEmitter<any>();
   @Output() removeTag = new EventEmitter<number>();
+
+  displayConfirm = false;
+  deleteTagId = -1;
 
   private _tags: any[] = [];
 
@@ -72,5 +76,20 @@ export class TagAdderComponent {
   deleteTag(tagId: number) {
     console.log('tagId', tagId);
     this.removeTag.emit(tagId);
+  }
+
+  showConfirm(tagId: number) {
+    this.deleteTagId = tagId;
+    this.displayConfirm = true;
+  }
+
+  confirmSelected() {
+    this.displayConfirm = false;
+    this.deleteTag(this.deleteTagId);
+  }
+
+  cancelSelected() {
+    this.deleteTagId = -1;
+    this.displayConfirm = false;
   }
 }

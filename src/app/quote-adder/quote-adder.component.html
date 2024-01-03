@@ -1,5 +1,5 @@
 <div class="adder-modal-wrapper" (click)="doNothing($event)">
-    <div class="adder-modal" *ngIf="!tagAdderVisible">
+    <div class="adder-modal" *ngIf="!tagAdderVisible && !displayConfirm">
       <div class="tag-adder-header">
         <h3 class="header-text">{{ title }}</h3>
       </div>
@@ -46,16 +46,21 @@
         </div>
         <div class="buttons-wrapper">
           <fa-icon [icon]="faXmark" class="button-icon padded-left" (click)="closeAdder()"></fa-icon>
-          <fa-icon [icon]="faTrash" class="button-icon padded-left" *ngIf="removeQuoteVisible" (click)="sendRemoveQuote()"></fa-icon>
+          <fa-icon [icon]="faTrash" class="button-icon padded-left" *ngIf="removeQuoteVisible" (click)="showConfirm()"></fa-icon>
           <fa-icon [icon]="faCheck" class="button-icon padded-left" (click)="addQuote()"></fa-icon>
         </div>
     </div>
 </div>
 <app-tag-adder
-  *ngIf="tagAdderVisible"
+  *ngIf="tagAdderVisible && !displayConfirm"
   [tags]="tags"
   [activeTags]="activeTags"
   (setTags)="setTags($event)"
   (addTag)="addTags($event)"
   (removeTag)="deleteTag($event)">
 </app-tag-adder>
+<app-are-you-sure
+  *ngIf="displayConfirm"
+  (confirm)="confirmSelected()"
+  (cancel)="cancelSelected()">
+</app-are-you-sure>

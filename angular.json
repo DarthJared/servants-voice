@@ -13,6 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "baseHref": "https://darthjared.github.io/direct-me/",
             "outputPath": "dist/direct-me",
             "index": "src/index.html",
             "browser": "src/main.ts",
@@ -88,6 +89,9 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy"
         }
       }
     }

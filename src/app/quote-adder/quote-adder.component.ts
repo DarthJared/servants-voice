@@ -4,11 +4,12 @@ import {TagAdderComponent} from "../tag-adder/tag-adder.component";
 import {CommonModule} from "@angular/common";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {faTag, faCheck, faXmark, faTrash} from "@fortawesome/free-solid-svg-icons";
+import {AreYouSureComponent} from "../are-you-sure/are-you-sure.component";
 
 @Component({
   selector: 'app-quote-adder',
   standalone: true,
-  imports: [CommonModule, FormsModule, TagAdderComponent, FontAwesomeModule],
+  imports: [CommonModule, FormsModule, TagAdderComponent, FontAwesomeModule, AreYouSureComponent],
   templateUrl: './quote-adder.component.html',
   styleUrl: './quote-adder.component.css'
 })
@@ -29,6 +30,8 @@ export class QuoteAdderComponent {
   @Input() sessionYear: number = 1971;
   @Input() removeQuoteVisible: boolean = false;
   @Input() title = 'ADDquote';
+
+  displayConfirm = false;
 
   tagAdderVisible = false;
 
@@ -80,5 +83,18 @@ export class QuoteAdderComponent {
 
     console.log('Remove it')
     this.removeTag.emit(tag);
+  }
+
+  showConfirm() {
+    this.displayConfirm = true;
+  }
+
+  confirmSelected() {
+    this.displayConfirm = false;
+    this.sendRemoveQuote();
+  }
+
+  cancelSelected() {
+    this.displayConfirm = false;
   }
 }
