@@ -6,11 +6,12 @@ import {QuoteAdderComponent} from "../quote-adder/quote-adder.component";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {faPenToSquare, faTag} from "@fortawesome/free-solid-svg-icons";
 import {SortTagPipe} from "../sort-tag.pipe";
+import {HighlighterPipe} from "../highlighter.pipe";
 
 @Component({
   selector: 'app-quote-display',
   standalone: true,
-  imports: [NgForOf, CommonModule, FormsModule, TagAdderComponent, QuoteAdderComponent, FontAwesomeModule, SortTagPipe],
+  imports: [NgForOf, CommonModule, FormsModule, TagAdderComponent, QuoteAdderComponent, FontAwesomeModule, SortTagPipe, HighlighterPipe],
   templateUrl: './quote-display.component.html',
   styleUrl: './quote-display.component.css'
 })
@@ -28,6 +29,7 @@ export class QuoteDisplayComponent {
   @Input() index: number = 0;
   @Input() tags: any[] = [];
   @Input() selectedTags: number[] = [];
+  @Input() searchText: string = '';
   @Output() updateQuote = new EventEmitter<any>();
   @Output() addTag = new EventEmitter<any>();
   @Output() deleteQuote = new EventEmitter<string>();

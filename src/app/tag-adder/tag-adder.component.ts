@@ -74,7 +74,6 @@ export class TagAdderComponent {
   }
 
   deleteTag(tagId: number) {
-    console.log('tagId', tagId);
     this.removeTag.emit(tagId);
   }
 

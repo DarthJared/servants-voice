@@ -1,6 +1,6 @@
 <div>
   <div class="quote-wrapper">
-    "{{quote.quote}}"
+    "<span [innerHTML]="quote.quote | highlighter : searchText"></span>"
     <br>
     ({{quote.talkTitle}} - {{quote.author}} - {{quote.session}})
     <div class="tag-display">

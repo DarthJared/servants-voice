@@ -9,7 +9,7 @@
       <fa-icon [icon]="faXmark" class="button-icon"></fa-icon>
     </div>
     <div class="search-wrapper">
-      <input type="text" class="search-input" placeholder="Search quotes..." [(ngModel)]="searchText">
+      <input type="text" class="search-input" placeholder="Search quotes..." [(ngModel)]="searchText" (keydown.enter)="searchQuotes()">
       <fa-icon [icon]="faMagnifyingGlass" class="small-button-icon" (click)="searchQuotes()"></fa-icon>
     </div>
     <div class="tag-display">

@@ -80,8 +80,6 @@ export class QuoteAdderComponent {
   }
 
   deleteTag(tag: number) {
-
-    console.log('Remove it')
     this.removeTag.emit(tag);
   }
 

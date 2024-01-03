@@ -19,7 +19,6 @@ export class QuotesService {
       }
     }).pipe(
       tap((res: any) => {
-        console.log(res);
         this.quotesUuid = res.items[0]._uuid;
       })
     );
@@ -31,14 +30,12 @@ export class QuotesService {
       }
     }).pipe(
       tap((res: any) => {
-        console.log(res);
         this.tagsUuid = res.items[0]._uuid;
       })
     );
   }
 
   public updateQuotes(quotes: any[]) {
-    console.log(this.quotesUuid)
     return this.http.put('https://crudapi.co.uk/api/v1/quotes', [{
         '_uuid': this.quotesUuid,
         quotes

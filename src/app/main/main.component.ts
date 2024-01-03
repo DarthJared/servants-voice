@@ -122,7 +122,6 @@ export class MainComponent {
   }
 
   deleteTag(tagId: number) {
-    console.log('Remove it')
     const updatedQuotes = this.quotes.map((quote: any) => {
       if (quote.tags) {
         quote.tags = quote.tags.filter((tag: number) => tag !== tagId);

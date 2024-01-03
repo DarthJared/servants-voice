@@ -11,7 +11,8 @@
       (deleteQuote)="removeQuote(i)"
       (removeTag)="deleteTag($event)"
       (addTagFilter)="addTagFilter($event)"
-      [selectedTags]="selectedTags">
+      [selectedTags]="selectedTags"
+      [searchText]="searchText">
     </app-quote-display>
   </div>
   <app-side-panel
