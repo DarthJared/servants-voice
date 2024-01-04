@@ -69,6 +69,28 @@
   cursor: pointer;
 }
 
+.tag-count, .author-count {
+  font-size: 12px;
+  opacity: 60%;
+  margin-left: 5px;
+}
+
+.tab-table {
+  width: 100%;
+}
+
+.tab-cell {
+  text-align: center;
+  cursor: pointer;
+  width: 49%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.active-tab {
+  border-bottom: 2px solid #FFFFFF;
+}
+
 .hidden {
   opacity: 0;
 }
@@ -76,4 +98,13 @@
 .tag-display {
   overflow: auto;
   height: calc(100% - 100px);
+}
+
+.author-pill {
+  width: fit-content;
+  border-radius: 20px;
+  padding: 5px 10px;
+  margin: 20px;
+  background-color: #555555;
+  cursor: pointer;
 }

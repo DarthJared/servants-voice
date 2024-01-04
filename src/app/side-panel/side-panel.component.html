@@ -2,7 +2,7 @@
   <div class="panel-contents" (click)="doNothing($event)">
     <div
       (click)="clearFilters()" class="search-clearer"
-      [ngClass]="{'hidden': searchText === '' && selectedTags.length === 0}">
+      [ngClass]="{'hidden': searchText === '' && selectedTags.length === 0 && selectedAuthors.length === 0}">
       Clear Filters
     </div>
     <div class="exit-icon" (click)="hidePanel()">
@@ -12,15 +12,47 @@
       <input type="text" class="search-input" placeholder="Search quotes..." [(ngModel)]="searchText" (keydown.enter)="searchQuotes()">
       <fa-icon [icon]="faMagnifyingGlass" class="small-button-icon" (click)="searchQuotes()"></fa-icon>
     </div>
-    <div class="tag-display">
-      <div
-        *ngFor="let tag of tags"
-        class="tag-pill"
-        (click)="addRemoveTagFromList(tag.id)"
-        [ngStyle]="{'background-color': tag.color}"
-        [ngClass]="{'unselected': selectedTags.length > 0 && !selectedTags.includes(tag.id)}">
-        {{tag.name}}
-      </div>
+    <div class="tabs">
+      <table class="tab-table">
+        <tr>
+          <td
+            class="tab-cell"
+            [ngClass]="{'active-tab': activeTab === 'tags'}"
+            (click)="setActiveTab('tags')">
+            Tags
+          </td>
+          <td
+            class="tab-cell"
+            [ngClass]="{'active-tab': activeTab === 'authors'}"
+            (click)="setActiveTab('authors')">
+            Authors
+          </td>
+        </tr>
+      </table>
     </div>
+    <div class="tag-display" *ngIf="activeTab === 'tags'">
+      <ng-container *ngFor="let tag of tags">
+        <div
+          *ngIf="tag.count > 0"
+          class="tag-pill"
+          (click)="addRemoveTagFromList(tag.id)"
+          [ngStyle]="{'background-color': tag.color}"
+          [ngClass]="{'unselected': selectedTags.length > 0 && !selectedTags.includes(tag.id)}">
+          {{tag.name}}
+          <span class="tag-count">{{tag.count}}</span>
+        </div>
+      </ng-container>
+    </div>
+    <div class="author-display" *ngIf="activeTab === 'authors'">
+      <ng-container *ngFor="let author of authors | keyvalue">
+        <div
+          *ngIf="author.value > 0"
+          class="author-pill"
+          (click)="addRemoveAuthorFromList(author.key)"
+          [ngClass]="{'unselected': selectedAuthors.length > 0 && !selectedAuthors.includes(author.key)}">
+          {{author.key}}
+          <span class="author-count">{{author.value}}</span>
+        </div>
+      </ng-container>
   </div>
 </div>

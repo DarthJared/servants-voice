@@ -20,9 +20,12 @@
     (hideSidePanel)="hideSidePanel()"
     (search)="applySearch($event)"
     (selectTags)="setSelectedTags($event)"
+    (selectAuthors)="setSelectedAuthors($event)"
     [searchText]="searchText"
     [tags]="tags"
-    [selectedTags]="selectedTags">
+    [authors]="authors"
+    [selectedTags]="selectedTags"
+    [selectedAuthors]="selectedAuthors">
   </app-side-panel>
   <app-quote-adder
     *ngIf="quoteAdderVisible"

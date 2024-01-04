@@ -16,7 +16,23 @@ import {SidePanelComponent} from "../side-panel/side-panel.component";
   styleUrl: './main.component.css'
 })
 export class MainComponent {
-  quotes: any[] = [];
+  get quotes() {
+    return this._quotes;
+  }
+  set quotes(quotes: any[]) {
+    this.authors = quotes.reduce((acc: any[], quote: any) => {
+      if (!acc[quote.author]) {
+        acc[quote.author] = 1;
+      }
+      else {
+        acc[quote.author] += 1;
+      }
+
+      return acc;
+    }, {});
+    this._quotes = quotes;
+  }
+  private _quotes: any[] = [];
 
   get filteredQuotes() {
     return this.quotes.filter((quote: any) => {
@@ -27,18 +43,28 @@ export class MainComponent {
       if (this.selectedTags.length > 0) {
         passingFilters = passingFilters && this.selectedTags.every((tagId: number) => quote.tags.includes(tagId));
       }
+      if (this.selectedAuthors.length > 0) {
+        passingFilters = passingFilters && this.selectedAuthors.includes(quote.author);
+      }
       return passingFilters;
-    });
+    }).reverse();
   }
   private _filteredQuotes: any[] = [];
   quoteAdderVisible = false;
   sidePanelVisible = false;
+  authors: any = {};
 
   get tags() {
-    return this._tags;
+    return this._tags.map((tag: any) => {
+      tag.count = this.quotes.filter((quote: any) => quote.tags.includes(tag.id)).length;
+      return tag;
+    });
   };
   set tags(tags: any[]) {
-    this._tags = tags.sort((a, b) => a.name.localeCompare(b.name))
+    this._tags = tags.sort((a, b) => a.name.localeCompare(b.name)).map((tag: any, index ) => {
+      tag.color = this.tagPillColors[index % this.tagPillColors.length];
+      return tag;
+    });
   }
 
   private _tags: any[] = [];
@@ -62,6 +88,7 @@ export class MainComponent {
   ];
 
   selectedTags: number[] = [];
+  selectedAuthors: string[] = [];
 
   constructor(private quotesService: QuotesService) {
     quotesService.getQuotes().subscribe((res: any) => {
@@ -78,10 +105,7 @@ export class MainComponent {
   }
 
   setTags(res: any) {
-    this.tags = res.items[0].tags ? res.items[0].tags.map((tag: any) => {
-      tag.color = this.tagPillColors[tag.id % this.tagPillColors.length];
-      return tag;
-    }) : [];
+    this.tags = res.items[0].tags ?? [];
   }
 
   showQuoteAdder() {
@@ -153,6 +177,10 @@ export class MainComponent {
 
   setSelectedTags(tags: number[]) {
     this.selectedTags = tags;
+  }
+
+  setSelectedAuthors(authors: string[]) {
+    this.selectedAuthors = authors;
   }
 
   addTagFilter(tagId: number) {
