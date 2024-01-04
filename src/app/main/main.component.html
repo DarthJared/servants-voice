@@ -16,7 +16,7 @@
     </app-quote-display>
   </div>
   <app-side-panel
-    *ngIf="sidePanelVisible"
+    [sidePanelVisible]="sidePanelVisible"
     (hideSidePanel)="hideSidePanel()"
     (search)="applySearch($event)"
     (selectTags)="setSelectedTags($event)"

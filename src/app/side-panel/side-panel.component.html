@@ -1,5 +1,5 @@
-<div class="darkened-back" (click)="hidePanel()">
-  <div class="panel-contents" (click)="doNothing($event)">
+<div class="darkened-back" (click)="hidePanel()" [ngClass]="{'shown-back': sidePanelVisible}">
+  <div class="panel-contents" (click)="doNothing($event)" [@openClose]="sidePanelVisible ? 'open' : 'closed'">
     <div
       (click)="clearFilters()" class="search-clearer"
       [ngClass]="{'hidden': searchText === '' && selectedTags.length === 0 && selectedAuthors.length === 0}">

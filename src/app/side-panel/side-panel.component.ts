@@ -4,6 +4,14 @@ import {faXmark, faMagnifyingGlass} from "@fortawesome/free-solid-svg-icons";
 import {FormsModule} from "@angular/forms";
 import {CommonModule, NgForOf} from "@angular/common";
 
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition
+} from '@angular/animations';
+
 interface AuthorCountMap {
   [key: string]: number;
 }
@@ -11,9 +19,25 @@ interface AuthorCountMap {
 @Component({
   selector: 'app-side-panel',
   standalone: true,
-  imports: [FormsModule, FontAwesomeModule, NgForOf, CommonModule, ],
+  imports: [FormsModule, FontAwesomeModule, NgForOf, CommonModule],
   templateUrl: './side-panel.component.html',
-  styleUrl: './side-panel.component.css'
+  styleUrl: './side-panel.component.css',
+  animations: [
+    trigger('openClose', [
+      state('open', style({
+        left: '0px'
+      })),
+      state('closed', style({
+        left: '-400px'
+      })),
+      transition('open => closed', [
+        animate('0.3s')
+      ]),
+      transition('closed => open', [
+        animate('0.3s')
+      ]),
+    ]),
+  ]
 })
 export class SidePanelComponent {
   @Output() hideSidePanel = new EventEmitter<string>();
@@ -26,6 +50,7 @@ export class SidePanelComponent {
   @Input() selectedTags: number[] = [];
   @Input() authors: AuthorCountMap = {};
   @Input() selectedAuthors: string[] = [];
+  @Input() sidePanelVisible: boolean = false;
 
   faXmark = faXmark;
   faMagnifyingGlass = faMagnifyingGlass;
