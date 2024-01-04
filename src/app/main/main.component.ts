@@ -130,8 +130,8 @@ export class MainComponent {
   }
 
   addTag(tag: any) {
-    this.tags.push(tag);
-    this.quotesService.updateTags(this.tags).subscribe((res: any) => {
+    const updatedTags = [...this.tags, tag];
+    this.quotesService.updateTags(updatedTags).subscribe((res: any) => {
       this.setTags(res);
     });
   }
