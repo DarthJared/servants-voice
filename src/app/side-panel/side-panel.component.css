@@ -72,3 +72,8 @@
 .hidden {
   opacity: 0;
 }
+
+.tag-display {
+  overflow: auto;
+  height: calc(100% - 100px);
+}
