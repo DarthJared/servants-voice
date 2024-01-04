@@ -16,7 +16,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## Deploying to Githup Pages
 
-Run `ng build --configuration production` and ` npx angular-cli-ghpages --dir=dist/direct-me/browser --no-silent`.  Navigate to [Inspire Me](https://darthjared.github.io/direct-me/) to see the deployed app.
+Run `ng build --configuration production` and ` npx angular-cli-ghpages --dir=dist/servants-voice/browser --no-silent`.  Navigate to [Inspire Me](https://darthjared.github.io/direct-me/) to see the deployed app.
 
 *NOTE: You may have to set up github token if deploying first time from computer.*
 
