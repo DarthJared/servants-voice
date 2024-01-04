@@ -30,6 +30,7 @@ export class MainComponent {
 
       return acc;
     }, {});
+
     this._quotes = quotes;
   }
   private _quotes: any[] = [];
@@ -117,6 +118,10 @@ export class MainComponent {
   }
 
   addQuote(newQuote: any) {
+    const nextId = this.quotes.reduce((acc: number, quote: any) => {
+      return quote.id > acc ? quote.id : acc;
+    }, -1) + 1;
+    newQuote.id = nextId;
     this.quotes.push(newQuote);
     this.quotesService.updateQuotes(this.quotes).subscribe((res: any) => {
       this.setQuotes(res);
@@ -131,16 +136,22 @@ export class MainComponent {
     });
   }
 
-  updateQuote(quote: any, index: number) {
-    this.quotes[index] = quote;
-    this.quotesService.updateQuotes(this.quotes).subscribe((res: any) => {
+  updateQuote(quote: any) {
+    const updatedQuotes = this.quotes.map((q: any) => {
+      if (quote.id === q.id) {
+        return quote;
+      }
+      return q;
+    });
+
+    this.quotesService.updateQuotes(updatedQuotes).subscribe((res: any) => {
       this.setQuotes(res);
     });
   }
 
-  removeQuote(index: number) {
-    this.quotes.splice(index, 1);
-    this.quotesService.updateQuotes(this.quotes).subscribe((res: any) => {
+  removeQuote(quoteId: number) {
+    const updatedQuotes = this.quotes.filter((q: any) => q.id !== quoteId);
+    this.quotesService.updateQuotes(updatedQuotes).subscribe((res: any) => {
       this.setQuotes(res);
     });
   }

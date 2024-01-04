@@ -93,9 +93,9 @@
   opacity: 0;
 }
 
-.tag-display {
+.tag-display, .author-display {
   overflow: auto;
-  height: calc(100% - 100px);
+  height: calc(100% - 150px);
 }
 
 .author-pill {

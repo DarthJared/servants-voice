@@ -24,6 +24,7 @@ export class QuoteAdderComponent {
   @Input() activeTags: number[] = [];
 
   @Input() quote: string = '';
+  @Input() quoteId: number = 0;
   @Input() author: string = '';
   @Input() talkTitle: string = '';
   @Input() sessionMonth: string = 'April';
@@ -50,6 +51,7 @@ export class QuoteAdderComponent {
 
   addQuote() {
     this.add.emit({
+      id: this.quoteId,
       quote: this.quote,
       author: this.author,
       talkTitle: this.talkTitle,
