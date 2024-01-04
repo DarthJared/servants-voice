@@ -147,6 +147,8 @@ export class MainComponent {
     this.quotesService.updateQuotes(updatedQuotes).subscribe((res: any) => {
       this.setQuotes(res);
     });
+
+    this.hideQuoteAdder();
   }
 
   removeQuote(quoteId: number) {
