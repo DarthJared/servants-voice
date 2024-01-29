@@ -14,6 +14,10 @@
       </div>
     </div>
     <div class="quote-buttons-wrapper">
+      <fa-icon
+        [icon]="faClipboard"
+        class="button-icon"
+        [cdkCopyToClipboard]="'&quot;' + quote.quote + '&quot;\n(' + quote.talkTitle + ' - ' + quote.author + ' - ' + quote.session + ')'"></fa-icon>
       <fa-icon [icon]="faTag" class="button-icon" (click)="showAddTags()"></fa-icon>
       <fa-icon [icon]="faPenToSquare" class="button-icon" (click)="showUpdateQuote()"></fa-icon>
     </div>

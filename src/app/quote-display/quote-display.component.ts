@@ -4,14 +4,15 @@ import {FormsModule} from "@angular/forms";
 import {TagAdderComponent} from "../tag-adder/tag-adder.component";
 import {QuoteAdderComponent} from "../quote-adder/quote-adder.component";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
-import {faPenToSquare, faTag} from "@fortawesome/free-solid-svg-icons";
+import {faPenToSquare, faTag, faClipboard} from "@fortawesome/free-solid-svg-icons";
 import {SortTagPipe} from "../sort-tag.pipe";
 import {HighlighterPipe} from "../highlighter.pipe";
+import {ClipboardModule} from "@angular/cdk/clipboard";
 
 @Component({
   selector: 'app-quote-display',
   standalone: true,
-  imports: [NgForOf, CommonModule, FormsModule, TagAdderComponent, QuoteAdderComponent, FontAwesomeModule, SortTagPipe, HighlighterPipe],
+  imports: [NgForOf, CommonModule, FormsModule, TagAdderComponent, QuoteAdderComponent, FontAwesomeModule, SortTagPipe, HighlighterPipe, ClipboardModule],
   templateUrl: './quote-display.component.html',
   styleUrl: './quote-display.component.css'
 })
@@ -41,6 +42,7 @@ export class QuoteDisplayComponent {
   quoteYear: number = 1971;
   faPenToSquare = faPenToSquare;
   faTag = faTag;
+  faClipboard = faClipboard;
 
   private _quote: any;
 
@@ -88,5 +90,9 @@ export class QuoteDisplayComponent {
 
   filterByTag(tag: number) {
     this.addTagFilter.emit(tag);
+  }
+
+  addToClipboard() {
+
   }
 }
