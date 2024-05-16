@@ -14,6 +14,12 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
+*NOTE: If you run into errors running this locally you may need to remove this line from angular.json:* 
+
+```
+"baseHref": "https://darthjared.github.io/servants-voice/",
+```
+
 ## Deploying to Githup Pages
 
 Run `ng build --configuration production` and ` npx angular-cli-ghpages --dir=dist/servants-voice/browser --no-silent`.  Navigate to [Inspire Me](https://darthjared.github.io/direct-me/) to see the deployed app.
@@ -31,3 +37,4 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
