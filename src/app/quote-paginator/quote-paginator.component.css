@@ -1,0 +1,27 @@
+.pagination-wrapper {
+  width: 100%;
+  text-align: center;
+}
+
+.curr-page {
+  display: inline-block;
+  padding: 10px;
+  margin: 5px;
+}
+
+.first-arrow,
+.last-arrow,
+.prev-arrow,
+.next-arrow {
+  display: inline-block;
+  padding: 10px;
+  margin: 5px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.disabled {
+  cursor: not-allowed;
+  color: #666;
+  border-color: #666;
+}

@@ -14,6 +14,10 @@
       [selectedTags]="selectedTags"
       [searchText]="searchText">
     </app-quote-display>
+    <app-quote-paginator
+      [numPages]="numberOfPages"
+      [currentPage]="currentPage"
+      (selectPage)="changePage($event)" />
   </div>
   <app-side-panel
     [sidePanelVisible]="sidePanelVisible"

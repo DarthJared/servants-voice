@@ -7,11 +7,12 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {faQuoteLeft, faQuoteRight} from "@fortawesome/free-solid-svg-icons";
 import {HeaderComponent} from "../header/header.component";
 import {SidePanelComponent} from "../side-panel/side-panel.component";
+import {QuotePaginatorComponent} from "../quote-paginator/quote-paginator.component";
 
 @Component({
   selector: 'app-main',
   standalone: true,
-  imports: [NgForOf, CommonModule, QuoteDisplayComponent, QuoteAdderComponent, FontAwesomeModule, HeaderComponent, SidePanelComponent],
+  imports: [NgForOf, CommonModule, QuoteDisplayComponent, QuoteAdderComponent, FontAwesomeModule, HeaderComponent, SidePanelComponent, QuotePaginatorComponent],
   templateUrl: './main.component.html',
   styleUrl: './main.component.css'
 })
@@ -35,8 +36,15 @@ export class MainComponent {
   }
   private _quotes: any[] = [];
 
+  private quotesPerPage = 20;
+  currentPage = 0;
+
+  totalQuotes = 0;
+
+  numberOfPages = 0;
+
   get filteredQuotes() {
-    return this.quotes.filter((quote: any) => {
+    const applicableQuotes = this.quotes.filter((quote: any) => {
       let passingFilters = true;
       if (this.searchText !== '') {
         passingFilters = quote.quote.toLowerCase().includes(this.searchText.toLowerCase());
@@ -49,6 +57,11 @@ export class MainComponent {
       }
       return passingFilters;
     }).reverse();
+
+    this.totalQuotes = applicableQuotes.length;
+    this.numberOfPages = Math.ceil(this.totalQuotes / this.quotesPerPage);
+
+    return applicableQuotes.slice(this.currentPage * this.quotesPerPage, (this.currentPage + 1) * this.quotesPerPage);
   }
   private _filteredQuotes: any[] = [];
   quoteAdderVisible = false;
@@ -186,22 +199,30 @@ export class MainComponent {
   applySearch(search: string) {
     this.searchText = search;
     this.hideSidePanel();
+    this.changePage(0);
   }
 
   setSelectedTags(tags: number[]) {
     this.selectedTags = tags;
+    this.changePage(0);
   }
 
   setSelectedAuthors(authors: string[]) {
     this.selectedAuthors = authors;
+    this.changePage(0);
   }
 
   addTagFilter(tagId: number) {
+    this.changePage(0);
     if (!this.selectedTags.includes(tagId)) {
       this.selectedTags.push(tagId);
     }
     else {
       this.selectedTags = this.selectedTags.filter((tag: number) => tag !== tagId);
     }
+  }
+
+  changePage(page: number) {
+    this.currentPage = page;
   }
 }
