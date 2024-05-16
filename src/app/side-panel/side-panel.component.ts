@@ -42,12 +42,13 @@ interface AuthorCountMap {
 export class SidePanelComponent {
   @Output() hideSidePanel = new EventEmitter<string>();
   @Output() search = new EventEmitter<string>();
-  @Output() selectTags = new EventEmitter<number[]>();
+  @Output() selectTags = new EventEmitter<Array<number | null>>();
   @Output() selectAuthors = new EventEmitter<string[]>();
 
   @Input() searchText: string = '';
   @Input() tags: any[] = [];
-  @Input() selectedTags: number[] = [];
+  @Input() untaggedCount: number = 0;
+  @Input() selectedTags: Array<number | null> = [];
   @Input() authors: AuthorCountMap = {};
   @Input() selectedAuthors: string[] = [];
   @Input() sidePanelVisible: boolean = false;
@@ -82,6 +83,16 @@ export class SidePanelComponent {
     }
 
     this.selectAuthors.emit(this.selectedAuthors);
+  }
+
+  selectUntagged() {
+    if (this.selectedTags.includes(null)) {
+      this.selectedTags = [];
+    }
+    else {
+      this.selectedTags = [null];
+    }
+    this.selectTags.emit(this.selectedTags);
   }
 
   clearFilters() {

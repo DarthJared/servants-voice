@@ -50,7 +50,7 @@ export class MainComponent {
         passingFilters = quote.quote.toLowerCase().includes(this.searchText.toLowerCase());
       }
       if (this.selectedTags.length > 0) {
-        passingFilters = passingFilters && this.selectedTags.every((tagId: number) => quote.tags.includes(tagId));
+        passingFilters = passingFilters && (this.selectedTags.every((tagId: number | null) => quote.tags.includes(tagId)) || (this.selectedTags.length === 1 && this.selectedTags[0] === null && quote.tags.length === 0));
       }
       if (this.selectedAuthors.length > 0) {
         passingFilters = passingFilters && this.selectedAuthors.includes(quote.author);
@@ -81,6 +81,10 @@ export class MainComponent {
     });
   }
 
+  get untaggedCount() {
+    return this.quotes.filter((quote: any) => quote.tags.length === 0).length;
+  }
+
   private _tags: any[] = [];
 
   faQuoteLeft = faQuoteLeft;
@@ -101,7 +105,7 @@ export class MainComponent {
     '#244A65'
   ];
 
-  selectedTags: number[] = [];
+  selectedTags: Array<number | null> = [];
   selectedAuthors: string[] = [];
 
   constructor(private quotesService: QuotesService) {
@@ -202,7 +206,7 @@ export class MainComponent {
     this.changePage(0);
   }
 
-  setSelectedTags(tags: number[]) {
+  setSelectedTags(tags: Array<number | null>) {
     this.selectedTags = tags;
     this.changePage(0);
   }
@@ -218,7 +222,7 @@ export class MainComponent {
       this.selectedTags.push(tagId);
     }
     else {
-      this.selectedTags = this.selectedTags.filter((tag: number) => tag !== tagId);
+      this.selectedTags = this.selectedTags.filter((tag: number | null) => tag !== tagId);
     }
   }
 

@@ -42,6 +42,12 @@
           <span class="tag-count">{{tag.count}}</span>
         </div>
       </ng-container>
+      <div
+        class="tag-pill"
+        (click)="selectUntagged()">
+        Untagged
+        <span class="tag-count">{{untaggedCount}}</span>
+      </div>
     </div>
     <div class="author-display" *ngIf="activeTab === 'authors'">
       <ng-container *ngFor="let author of authors | keyvalue">

@@ -42,7 +42,7 @@ export class TagAdderComponent {
     if (this.activeTags.includes(tagId)) {
       this.activeTags = this.activeTags.filter(t => t !== tagId);
     } else {
-      this.activeTags.push(tagId);
+      this.activeTags = [...this.activeTags, tagId];
     }
   }
 

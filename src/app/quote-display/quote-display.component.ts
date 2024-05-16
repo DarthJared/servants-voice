@@ -29,7 +29,7 @@ export class QuoteDisplayComponent {
   }
   @Input() index: number = 0;
   @Input() tags: any[] = [];
-  @Input() selectedTags: number[] = [];
+  @Input() selectedTags: Array<number | null> = [];
   @Input() searchText: string = '';
   @Output() updateQuote = new EventEmitter<any>();
   @Output() addTag = new EventEmitter<any>();
@@ -78,10 +78,12 @@ export class QuoteDisplayComponent {
   updateQuoteData(quote: any) {
     this.quote = quote;
     this.updateQuote.emit(this.quote);
+    this.hideUpdateQuote();
   }
 
   removeQuote() {
     this.deleteQuote.emit('remove');
+    this.hideUpdateQuote();
   }
 
   deleteTag(tag: number) {
@@ -90,9 +92,5 @@ export class QuoteDisplayComponent {
 
   filterByTag(tag: number) {
     this.addTagFilter.emit(tag);
-  }
-
-  addToClipboard() {
-
   }
 }
