@@ -113,7 +113,9 @@
 
 .day-counter {
   position: absolute;
-  left: 20px;
-  top: 15px;
   font-size: 20px;
+  width: 120px;
+  top: 15px;
+  left: calc(50% - 60px);
+  text-align: center;
 }
