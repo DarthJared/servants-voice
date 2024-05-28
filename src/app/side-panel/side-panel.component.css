@@ -110,3 +110,10 @@
 .shown-back {
   right: 0;
 }
+
+.day-counter {
+  position: absolute;
+  left: 20px;
+  top: 15px;
+  font-size: 20px;
+}

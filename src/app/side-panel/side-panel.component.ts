@@ -111,4 +111,19 @@ export class SidePanelComponent {
   setActiveTab(tab: string) {
     this.activeTab = tab;
   }
+
+  getDayCount() {
+    let dayCount = 1
+    let curDate = new Date('2022-01-17') // Start date was 1/16/2022 but for some reason it was you have to enter the next day to get the correct count
+    const today = new Date();
+
+    while(curDate <= today) {
+      // let dayStr = `${curDate.getMonth() + 1}-${curDate.getDate()}-${curDate.getFullYear()}`
+      // console.log(`${dayCount} - ${dayStr}`)
+
+      curDate.setDate(curDate.getDate() + 1)
+      dayCount++
+    }
+    return dayCount;
+  }
 }
