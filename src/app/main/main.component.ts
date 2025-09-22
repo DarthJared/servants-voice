@@ -152,24 +152,40 @@ export class MainComponent {
   }
 
   updateQuote(quote: any) {
-    this.sheetsQuotesService.updateQuote(quote).subscribe((res: any) => {
-      this.setQuotes(res);
-    });
+    const updatedQuotes = this.quotes.map((oldQuote) => {
+      if (oldQuote.id === quote.id) {
+        return quote;
+      }
+
+      return oldQuote;
+    })
+
+    this.setQuotes(updatedQuotes);
+
+    this.sheetsQuotesService.updateQuote(quote).subscribe();
 
     this.hideQuoteAdder();
   }
 
   removeQuote(quoteId: number) {
-    this.sheetsQuotesService.deleteQuote(quoteId).subscribe((res: any) => {
-      this.setQuotes(res);
-    });
+    const updatedQuotes = this.quotes.filter((quote) => quote.id !== quoteId);
+
+    this.setQuotes(updatedQuotes);
+
+    this.sheetsQuotesService.deleteQuote(quoteId).subscribe();
   }
 
   deleteTag(tagId: number) {
-    this.sheetsQuotesService.deleteTag(tagId).subscribe((res: any) => {
-      this.setQuotes(res.quotes);
-      this.setTags(res.tags);
+    const updatedQuotes = this.quotes.map((quote) => {
+      return {...quote, tags: quote.tags.filter((tag: number) => tag !== tagId)};
     });
+
+    const updatedTags = this.tags.filter((tag) => tag.id !== tagId);
+
+    this.setQuotes(updatedQuotes);
+    this.setTags(updatedTags);
+
+    this.sheetsQuotesService.deleteTag(tagId).subscribe();
   }
 
   displaySidePanel() {

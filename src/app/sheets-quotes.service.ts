@@ -28,7 +28,7 @@ type AddedTag = {
 })
 export class SheetsQuotesService {
 
-  baseUrl = 'https://servants-voice-backend.onrender.com'; // 'http://localhost:3000';
+  baseUrl = 'http://localhost:3000';
 
   constructor(private http: HttpClient) { }
 
