@@ -55,7 +55,9 @@ export class QuoteAdderComponent {
       quote: this.quote,
       author: this.author,
       talkTitle: this.talkTitle,
+      month: this.sessionMonth,
       session: `${this.sessionMonth} ${this.sessionYear}`,
+      year: this.sessionYear,
       tags: this.activeTags
     });
   }

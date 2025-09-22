@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { QuotesService } from '../quotes.service';
 import { CommonModule, NgForOf } from '@angular/common';
 import { QuoteDisplayComponent } from '../quote-display/quote-display.component';
 import { QuoteAdderComponent } from '../quote-adder/quote-adder.component';
@@ -8,6 +7,7 @@ import {faQuoteLeft, faQuoteRight} from "@fortawesome/free-solid-svg-icons";
 import {HeaderComponent} from "../header/header.component";
 import {SidePanelComponent} from "../side-panel/side-panel.component";
 import {QuotePaginatorComponent} from "../quote-paginator/quote-paginator.component";
+import { SheetsQuotesService } from '../sheets-quotes.service';
 
 @Component({
   selector: 'app-main',
@@ -108,22 +108,22 @@ export class MainComponent {
   selectedTags: Array<number | null> = [];
   selectedAuthors: string[] = [];
 
-  constructor(private quotesService: QuotesService) {
-    quotesService.getQuotes().subscribe((res: any) => {
+  constructor(private sheetsQuotesService: SheetsQuotesService) {
+    sheetsQuotesService.getQuotes().subscribe((res: any) => {
       this.setQuotes(res);
     });
 
-    quotesService.getTags().subscribe((res: any) => {
+    sheetsQuotesService.getTags().subscribe((res: any) => {
       this.setTags(res);
     });
   }
 
   setQuotes(res: any) {
-    this.quotes = res.items[0].quotes ?? [];
+    this.quotes = res ?? [];
   }
 
   setTags(res: any) {
-    this.tags = res.items[0].tags ?? [];
+    this.tags = res ?? [];
   }
 
   showQuoteAdder() {
@@ -140,28 +140,19 @@ export class MainComponent {
     }, -1) + 1;
     newQuote.id = nextId;
     this.quotes.push(newQuote);
-    this.quotesService.updateQuotes(this.quotes).subscribe((res: any) => {
-      this.setQuotes(res);
-    });
+    this.sheetsQuotesService.addQuote(newQuote).subscribe();
     this.hideQuoteAdder();
   }
 
   addTag(tag: any) {
     const updatedTags = [...this.tags, tag];
-    this.quotesService.updateTags(updatedTags).subscribe((res: any) => {
-      this.setTags(res);
-    });
+    this.setTags(updatedTags);
+
+    this.sheetsQuotesService.addTag(tag).subscribe();
   }
 
   updateQuote(quote: any) {
-    const updatedQuotes = this.quotes.map((q: any) => {
-      if (quote.id === q.id) {
-        return quote;
-      }
-      return q;
-    });
-
-    this.quotesService.updateQuotes(updatedQuotes).subscribe((res: any) => {
+    this.sheetsQuotesService.updateQuote(quote).subscribe((res: any) => {
       this.setQuotes(res);
     });
 
@@ -169,26 +160,15 @@ export class MainComponent {
   }
 
   removeQuote(quoteId: number) {
-    const updatedQuotes = this.quotes.filter((q: any) => q.id !== quoteId);
-    this.quotesService.updateQuotes(updatedQuotes).subscribe((res: any) => {
+    this.sheetsQuotesService.deleteQuote(quoteId).subscribe((res: any) => {
       this.setQuotes(res);
     });
   }
 
   deleteTag(tagId: number) {
-    const updatedQuotes = this.quotes.map((quote: any) => {
-      if (quote.tags) {
-        quote.tags = quote.tags.filter((tag: number) => tag !== tagId);
-      }
-      return quote;
-    });
-    this.quotesService.updateQuotes(updatedQuotes).subscribe((res: any) => {
-      this.setQuotes(res);
-    });
-
-    const updatedTags = this.tags.filter((tag: any) => tag.id !== tagId);
-    this.quotesService.updateTags(updatedTags).subscribe((res: any) => {
-      this.setTags(res);
+    this.sheetsQuotesService.deleteTag(tagId).subscribe((res: any) => {
+      this.setQuotes(res.quotes);
+      this.setTags(res.tags);
     });
   }
 
