@@ -66,6 +66,7 @@
   margin-left: 25px;
   margin-top: 20px;
   cursor: pointer;
+  z-index: 9999;
 }
 
 .tag-count, .author-count {
