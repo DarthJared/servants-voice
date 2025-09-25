@@ -119,3 +119,21 @@
   left: calc(50% - 60px);
   text-align: center;
 }
+
+.abc-filter {
+  display: inline-block;
+  background-color: #555555;
+  border-radius: 20px;
+  padding: 5px 10px;
+  font-size: 11px;
+  margin-left: 5px;
+}
+
+.number-filter {
+  display: inline-block;
+  background-color: #555555;
+  border-radius: 20px;
+  padding: 5px 16px;
+  font-size: 11px;
+  margin-left: 5px;
+}

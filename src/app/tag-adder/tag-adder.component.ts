@@ -38,6 +38,16 @@ export class TagAdderComponent {
   faXmark = faXmark;
   faTrash = faTrash;
 
+  searchText = '';
+
+  get filteredTags() {
+    if (this.searchText && this.searchText !== '') {
+      return this.tags.filter((tag: any) => tag.name.includes(this.searchText));
+    }
+
+    return this.tags;
+  }
+
   addRemoveTagFromList(tagId: number) {
     if (this.activeTags.includes(tagId)) {
       this.activeTags = this.activeTags.filter(t => t !== tagId);

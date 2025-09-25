@@ -8,6 +8,7 @@ import {HeaderComponent} from "../header/header.component";
 import {SidePanelComponent} from "../side-panel/side-panel.component";
 import {QuotePaginatorComponent} from "../quote-paginator/quote-paginator.component";
 import { SheetsQuotesService } from '../sheets-quotes.service';
+import { SortType } from '../common.utils';
 
 @Component({
   selector: 'app-main',
@@ -67,6 +68,8 @@ export class MainComponent {
   quoteAdderVisible = false;
   sidePanelVisible = false;
   authors: any = {};
+  tagSort: SortType = SortType.Alphabetical;
+  authorSort: SortType = SortType.Alphabetical;
 
   get tags() {
     return this._tags.map((tag: any) => {
@@ -75,7 +78,13 @@ export class MainComponent {
     });
   };
   set tags(tags: any[]) {
-    this._tags = tags.sort((a, b) => a.name.localeCompare(b.name)).map((tag: any, index ) => {
+    this._tags = tags.sort((a, b) => {
+      if (this.tagSort === SortType.Alphabetical) {
+        return a.name.localeCompare(b.name);
+      } else {
+        return b.count - a.count;
+      }
+    }).map((tag: any, index ) => {
       tag.color = this.tagPillColors[index % this.tagPillColors.length];
       return tag;
     });
@@ -224,5 +233,23 @@ export class MainComponent {
 
   changePage(page: number) {
     this.currentPage = page;
+  }
+
+  toggleTagSort() {
+    if (this.tagSort === SortType.Alphabetical) {
+      this.tagSort = SortType.Popularity;
+    } else {
+      this.tagSort = SortType.Alphabetical;
+    }
+
+    this.setTags(this._tags);
+  }
+
+  toggleAuthorSort() {
+    if (this.authorSort === SortType.Alphabetical) {
+      this.authorSort = SortType.Popularity;
+    } else {
+      this.authorSort = SortType.Alphabetical;
+    }
   }
 }

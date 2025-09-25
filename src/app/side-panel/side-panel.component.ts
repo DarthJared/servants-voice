@@ -11,6 +11,8 @@ import {
   animate,
   transition
 } from '@angular/animations';
+import { SortType } from '../common.utils';
+import { AuthorSortPipe } from '../author-sort.pipe';
 
 interface AuthorCountMap {
   [key: string]: number;
@@ -19,7 +21,7 @@ interface AuthorCountMap {
 @Component({
   selector: 'app-side-panel',
   standalone: true,
-  imports: [FormsModule, FontAwesomeModule, NgForOf, CommonModule],
+  imports: [FormsModule, FontAwesomeModule, NgForOf, CommonModule, AuthorSortPipe],
   templateUrl: './side-panel.component.html',
   styleUrl: './side-panel.component.css',
   animations: [
@@ -44,6 +46,8 @@ export class SidePanelComponent {
   @Output() search = new EventEmitter<string>();
   @Output() selectTags = new EventEmitter<Array<number | null>>();
   @Output() selectAuthors = new EventEmitter<string[]>();
+  @Output() toggleTagSort = new EventEmitter<string>();
+  @Output() toggleAuthorSort = new EventEmitter<string>();
 
   @Input() searchText: string = '';
   @Input() tags: any[] = [];
@@ -52,10 +56,14 @@ export class SidePanelComponent {
   @Input() authors: AuthorCountMap = {};
   @Input() selectedAuthors: string[] = [];
   @Input() sidePanelVisible: boolean = false;
+  @Input() tagSort: SortType = SortType.Alphabetical;
+  @Input() authorSort: SortType = SortType.Alphabetical;
 
   faXmark = faXmark;
   faMagnifyingGlass = faMagnifyingGlass;
   activeTab = 'tags';
+
+  SortType = SortType;
 
   hidePanel() {
     this.hideSidePanel.emit('hide');
@@ -118,12 +126,21 @@ export class SidePanelComponent {
     const today = new Date();
 
     while(curDate <= today) {
-      // let dayStr = `${curDate.getMonth() + 1}-${curDate.getDate()}-${curDate.getFullYear()}`
-      // console.log(`${dayCount} - ${dayStr}`)
-
       curDate.setDate(curDate.getDate() + 1)
       dayCount++
     }
     return dayCount;
+  }
+
+  tagSortClicked() {
+    if (this.activeTab === 'tags') {
+      this.toggleTagSort.emit('Clicked!');
+    }
+  }
+
+  authorSortClicked() {
+    if (this.activeTab === 'authors') {
+      this.toggleAuthorSort.emit('Clicked!');
+    }
   }
 }

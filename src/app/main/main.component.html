@@ -25,12 +25,16 @@
     (search)="applySearch($event)"
     (selectTags)="setSelectedTags($event)"
     (selectAuthors)="setSelectedAuthors($event)"
+    (toggleTagSort)="toggleTagSort()"
+    (toggleAuthorSort)="toggleAuthorSort()"
     [searchText]="searchText"
     [tags]="tags"
     [authors]="authors"
     [selectedTags]="selectedTags"
     [selectedAuthors]="selectedAuthors"
-    [untaggedCount]="untaggedCount">
+    [untaggedCount]="untaggedCount"
+    [tagSort]="tagSort"
+    [authorSort]="authorSort">
   </app-side-panel>
   <app-quote-adder
     *ngIf="quoteAdderVisible"

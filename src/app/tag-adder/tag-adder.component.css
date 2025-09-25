@@ -27,7 +27,7 @@
   list-style-type: none;
   padding: 0;
   margin: 0;
-  max-height: 60vh;
+  height: 60vh;
   overflow: auto;
 }
 
@@ -87,4 +87,8 @@
 
 .unselected {
   opacity: 30%;
+}
+
+.tag-search {
+  margin-bottom: 10px;
 }

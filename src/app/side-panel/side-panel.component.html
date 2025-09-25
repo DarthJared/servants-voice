@@ -23,12 +23,16 @@
             [ngClass]="{'active-tab': activeTab === 'tags'}"
             (click)="setActiveTab('tags')">
             Tags
+            <div *ngIf="activeTab === 'tags' && tagSort === SortType.Alphabetical" class="abc-filter" (click)="tagSortClicked()">ABC</div>
+            <div *ngIf="activeTab === 'tags' && tagSort === SortType.Popularity" class="number-filter" (click)="tagSortClicked()">#</div>
           </td>
           <td
             class="tab-cell"
             [ngClass]="{'active-tab': activeTab === 'authors'}"
             (click)="setActiveTab('authors')">
             Authors
+            <div *ngIf="activeTab === 'authors' && authorSort === SortType.Alphabetical" class="abc-filter" (click)="authorSortClicked()">ABC</div>
+            <div *ngIf="activeTab === 'authors' && authorSort === SortType.Popularity" class="number-filter" (click)="authorSortClicked()">#</div>
           </td>
         </tr>
       </table>
@@ -53,14 +57,14 @@
       </div>
     </div>
     <div class="author-display" *ngIf="activeTab === 'authors'">
-      <ng-container *ngFor="let author of authors | keyvalue">
+      <ng-container *ngFor="let author of authors | authorSort: authorSort">
         <div
-          *ngIf="author.value > 0"
+          *ngIf="author.count > 0"
           class="author-pill"
-          (click)="addRemoveAuthorFromList(author.key)"
-          [ngClass]="{'unselected': selectedAuthors.length > 0 && !selectedAuthors.includes(author.key)}">
-          {{author.key}}
-          <span class="author-count">{{author.value}}</span>
+          (click)="addRemoveAuthorFromList(author.name)"
+          [ngClass]="{'unselected': selectedAuthors.length > 0 && !selectedAuthors.includes(author.name)}">
+          {{author.name}}
+          <span class="author-count">{{author.count}}</span>
         </div>
       </ng-container>
   </div>

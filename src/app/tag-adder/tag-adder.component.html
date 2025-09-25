@@ -2,9 +2,12 @@
   <div class="tag-adder" *ngIf="!displayConfirm">
     <div class="tag-adder-header">
       <h3 class="header-text">TAGquote</h3>
+      <div>
+        <input type="text" class="tag-search" placeholder="Search tags..." [(ngModel)]="searchText">
+      </div>
     </div>
     <ul class="tag-list">
-      <li *ngFor="let tag of tags">
+      <li *ngFor="let tag of filteredTags">
         <table class="list-item-table">
           <tr>
             <td>
