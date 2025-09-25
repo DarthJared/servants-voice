@@ -11,6 +11,9 @@
     <div class="day-counter">
       Day {{ getDayCount() }}
     </div>
+      <div *ngFor="let timeSince of getTimeSince()" class="time-since">
+        {{ timeSince.years }} years, {{ timeSince.months }} months, {{ timeSince.days }} days
+      </div>
     <div class="search-wrapper">
       <input type="text" class="search-input" placeholder="Search quotes..." [(ngModel)]="searchText" (keydown.enter)="searchQuotes()">
       <fa-icon [icon]="faMagnifyingGlass" class="small-button-icon" (click)="searchQuotes()"></fa-icon>

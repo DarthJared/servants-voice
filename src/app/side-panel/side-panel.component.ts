@@ -129,7 +129,42 @@ export class SidePanelComponent {
       curDate.setDate(curDate.getDate() + 1)
       dayCount++
     }
+
     return dayCount;
+  }
+
+  getTimeSince() {
+    const startDate =  new Date('2022-01-16'); // 01-16-2022
+    const today = new Date();
+    const monthDays = [31, 27, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+    const isLeapYear = today.getFullYear() % 4;
+    
+    let years = today.getFullYear() - startDate.getFullYear();
+    let months = today.getMonth() - startDate.getMonth();
+    let days = today.getDate() - startDate.getDate();
+
+    if (months < 0 || (months === 0 && days < 0)) {
+      years--;
+    }
+
+    if (days < 0) {
+      months--;
+    }
+
+    if (months < 0) {
+      months += 12;
+    }
+
+    if (days < 0) {
+      days += monthDays[today.getMonth()];
+      
+      if (isLeapYear && today.getMonth() === 2) {
+        days++;
+      }
+    }  
+    
+    return [{ days, months, years }]; // making it so I only have to call this once for the 3 values in the template
   }
 
   tagSortClicked() {
